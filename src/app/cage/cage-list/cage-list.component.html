@@ -1,0 +1,179 @@
+
+<div class="container-fluid " id="content" style="margin-top: 50px">
+  <div class="row">
+    <div class="col-lg-2 ml-0">
+      <!-- Sidebar -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 236px; height: 1000px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4"><strong>Quản lý hệ thống</strong></span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a [routerLink]="['/admin/employee']" class="nav-link" aria-current="page">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+              Quản lý nhân viên
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/employee/entities']"class="nav-link active">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              Quản lý chuồng nuôi
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+
+        <!-- Sidebar -->
+      </div>
+    </div>
+    <div class="col-lg-10">
+      <div class="card shadow ">
+        <div class="card-header py-3">
+          <div class="d-flex flex-row  d-flex justify-content-center">
+            <div class="col-6">
+              <div class="input-group" style="padding-left: 120px">
+                <p style="    margin-top: 5px;margin-right: 10px">Loại ngày:</p>
+                <select class="form-control" style="max-width: 125px; border-radius: 5px" [(ngModel)]="dateType">
+                  <option value="createdDate">Ngày tạo</option>
+                  <option value="closedDate">Ngày đóng</option>
+                </select>
+                <p style="  margin-top: 5px;margin-left: 8px">Từ</p>
+                <div class="form-outline" style=" margin-left: 10px;  margin-right: 10px;max-width: 135px">
+                  <input type="date" class="form-control" placeholder="Nhập ngày vào" [(ngModel)]="dateFrom"/>
+                </div>
+                <p style=" margin-top: 5px;">đến</p>
+                <div class="form-outline" style=" margin-left: 10px;max-width: 135px">
+                  <input type="date" class="form-control" placeholder="Nhập ngày vào" [(ngModel)]="dateTo"/>
+                </div>
+                <div class="form-outline"style="margin-left: 10px;max-width: 135px" >
+                  <input type="search" class="form-control"
+                         placeholder="Mã chuồng" [(ngModel)]="searchCageId"/>
+                </div>
+                <div class="form-outline"style="margin-left: 10px;max-width: 145px" >
+                  <select style="font-size: smaller;min-height: 36px" class="form-control" [(ngModel)]="employee">
+                    <option  value="">-Chọn nhân viên-</option>
+                    <option *ngFor="let employee of employeeList" value="{{employee.employeeId}}">{{employee.employeeName}}</option>
+                  </select>
+                </div>
+                <button type="submit" (click)="search()" class="btn btn-primary" style="margin-left: 10px;max-height: 36px">
+                  Tìm kiếm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div >
+          <ng-template #notSubmited>
+            <h5>Không có kết quả nào để hiển thị</h5>
+          </ng-template>
+          <ng-template #submited>
+            <h5></h5>
+          </ng-template>
+        </div>
+        <div class="card-body">
+
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+              <tr>
+                <th><span class="span-header">Mã chuồng nuôi</span>
+                  <i *ngIf="sortBy!=='cageId'" (click)="setSortBy('cageId')" class="fa-solid fa-sort"></i>
+                  <i *ngIf="isAcsSort&&sortBy=='cageId'" (click)="setSortBy('cageId')" class="fa-solid fa-angle-up"></i>
+                  <i *ngIf="!isAcsSort&&sortBy=='cageId'" (click)="setSortBy('cageId')" class="fa-solid fa-angle-down"></i>
+                </th>
+                <th>Tên nhân viên
+                  <i *ngIf="sortBy!=='employeeName'" (click)="setSortBy('employeeName')" class="fa-solid fa-sort"></i>
+                  <i *ngIf="isAcsSort&&sortBy=='employeeName'" (click)="setSortBy('employeeName')" class="fa-solid fa-angle-up"></i>
+                  <i *ngIf="!isAcsSort&&sortBy=='employeeName'" (click)="setSortBy('employeeName')" class="fa-solid fa-angle-down"></i>
+                </th>
+                <th>Số lượng
+                  <i *ngIf="sortBy!=='entitiesQuantity'" (click)="setSortBy('entitiesQuantity')" class="fa-solid fa-sort"></i>
+                  <i *ngIf="isAcsSort&&sortBy=='entitiesQuantity'" (click)="setSortBy('entitiesQuantity')" class="fa-solid fa-angle-up"></i>
+                  <i *ngIf="!isAcsSort&&sortBy=='entitiesQuantity'" (click)="setSortBy('entitiesQuantity')" class="fa-solid fa-angle-down"></i>
+                </th>
+                <th>Ngày tạo chuồng
+                  <i *ngIf="sortBy!=='createdDate'" (click)="setSortBy('createdDate')" class="fa-solid fa-sort"></i>
+                  <i *ngIf="isAcsSort&&sortBy=='createdDate'" (click)="setSortBy('createdDate')" class="fa-solid fa-angle-up"></i>
+                  <i *ngIf="!isAcsSort&&sortBy=='createdDate'" (click)="setSortBy('createdDate')" class="fa-solid fa-angle-down"></i>
+                </th>
+                <th>Ngày đóng chuồng
+                  <i *ngIf="sortBy!=='closedDate'" (click)="setSortBy('closedDate')" class="fa-solid fa-sort"></i>
+                  <i *ngIf="isAcsSort&&sortBy=='closedDate'" (click)="setSortBy('closedDate')" class="fa-solid fa-angle-up"></i>
+                  <i *ngIf="!isAcsSort&&sortBy=='closedDate'" (click)="setSortBy('closedDate')" class="fa-solid fa-angle-down"></i>
+                </th>
+                <th>Sửa</th>
+                <th>Danh sách cá thể</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let cage of listCage">
+                <td>{{cage.cageId}}</td>
+                <td>{{cage.employeeName}}</td>
+                <td>{{cage.entitiesQuantity}}/{{cage.quantity}}</td>
+                <td>{{cage.createdDate|date:"dd-MM-yyyy"}}</td>
+                <td>{{cage.closedDate|date:"dd-MM-yyyy"}}</td>
+                <td>
+                  <button class="btn" [routerLink]="['edit/'+ cage.cageId]"><i class="fa-solid fa-pen-clip" style="color: blue;"></i></button>
+                </td>
+                <td>
+                  <button class="btn" (click)="getListEntitiesByCage(cage.cageId)"><i class="fa-solid fa-eye" style="color: blue;"></i></button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-5">
+
+              <a routerLink="/employee/cage/create">
+                <button class="btn btn-primary">Khởi tạo</button>
+              </a>
+            </div>
+            <div class="col-sm-12 col-md-7" >
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end" style="justify-content: center" *ngIf="isSearch==false" >
+                  <li class="nav-item">
+                    <a [ngClass]="{'nav-link-lr-true': 0 == page, 'nav-link-lr-false ': 0 != page}" href=""
+                       (click)="setPage(page-1,$event)" ><i class="fa-solid fa-caret-left"></i></a>
+                  </li>
+                  <li class="nav-item" *ngFor="let p of pages;let i=index">
+                    <a [ngClass]="{'nav-link-true': i == page, 'nav-link-false ': i != page}" href=""
+                       (click)="setPage(i,$event)">{{i+1}}</a>
+                  </li>
+                  <li class="nav-item">
+                    <a [ngClass]="{'nav-link-lr-true': pageTotal - 1 == page, 'nav-link-lr-false': pageTotal  - 1 != page}" href=""
+                       (click)="setPage(page+1,$event)" ><i class="fa-solid fa-caret-right"></i></a>
+                  </li>
+                </ul>
+
+<!--                Phan trang khi tim kiem-->
+
+                <ul class="pagination justify-content-end" style="justify-content: center" *ngIf="isSearch==true" >
+                  <li class="nav-item">
+                    <a [ngClass]="{'nav-link-lr-true': 0 == pageSearchCurrent, 'nav-link-lr-false ': 0 != pageSearchCurrent}" href=""
+                       (click)="setSearch(pageSearchCurrent-1,$event)" ><i class="fa-solid fa-caret-left"></i></a>
+                  </li>
+                  <li class="nav-item" *ngFor="let p of pageSearch;let i=index">
+                    <a [ngClass]="{'nav-link-true': i == pageSearchCurrent, 'nav-link-false ': i != pageSearchCurrent}" href=""
+                       (click)="setSearch(i,$event)">{{i+1}}</a>
+                  </li>
+                  <li class="nav-item">
+                    <a [ngClass]="{'nav-link-lr-true': pageSearchTotal - 1 == pageSearchCurrent, 'nav-link-lr-false': pageSearchTotal  - 1 != pageSearchCurrent}" href=""
+                       (click)="setSearch(pageSearchCurrent+1,$event)" ><i class="fa-solid fa-caret-right"></i></a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

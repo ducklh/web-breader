@@ -1,0 +1,108 @@
+
+<div class="container-fluid" style="margin-top: 60px">
+  <div class="contact-content-center">
+    <div class="row ">
+      <div class="col-lg-8 contact-left p-5">
+        <form [formGroup]="contactForm" *ngIf="this.contactForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <H3 style="text-align: center; min-width: 100%"> Thông tin liên hệ</H3>
+            <span style="font-size: 15px; text-decoration: underline solid; min-width: 100%; text-align: center; margin-bottom:15px">Nếu là khách hàng cũ chỉ cần nhập số điện thoại và email</span>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputName">Họ và tên: </label>
+              <input formControlName="fullName" type="email" class="form-control" id="inputName">
+            <div class="validate" *ngFor="let validation of validationMessages.fullName">
+              <span *ngIf="contactForm.get('fullName').hasError(validation.type) && (contactForm.get('fullName').dirty || contactForm.get('fullName').touched || contactForm.get('fullName').untouched)">
+              {{validation.message}}</span>
+            </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPhone">Số điện thoại: </label>
+              <input formControlName="phone" type="text" class="form-control" id="inputPhone" (change)="checkCustomer()">
+              <div class="validate" *ngFor="let validation of validationMessages.phone">
+              <span *ngIf="contactForm.get('phone').hasError(validation.type) && (contactForm.get('phone').dirty || contactForm.get('phone').touched || contactForm.get('phone').untouched)">
+              {{validation.message}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail">Email: </label>
+              <input formControlName="email" type="email" class="form-control" id="inputEmail" (change)="checkCustomer()">
+              <div class="validate" *ngFor="let validation of validationMessages.email">
+              <span *ngIf="contactForm.get('email').hasError(validation.type) && (contactForm.get('email').dirty || contactForm.get('email').touched || contactForm.get('email').untouched)">
+              {{validation.message}}</span>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Giới tính: </label>
+              <select formControlName="gender" class="form-control">
+                <option value="true">Nam</option>
+                <option value="false">Nữ</option>
+              </select>
+              <div class="validate" *ngFor="let validation of validationMessages.gender">
+              <span *ngIf="contactForm.get('gender').hasError(validation.type) && (contactForm.get('gender').dirty || contactForm.get('gender').touched || contactForm.get('gender').untouched)">
+              {{validation.message}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label>Tỉnh/TP: </label>
+              <select class="form-control" formControlName="province" (change)="getDistrict()">
+                <option [selected]="contactForm.value.province==province.provinceId" *ngFor="let province of provinceList" value="{{province.provinceId}}">{{province.provinceName}}</option>
+              </select>
+              <div class="validate" *ngFor="let validation of validationMessages.province">
+              <span *ngIf="contactForm.get('province').hasError(validation.type) && (contactForm.get('province').dirty || contactForm.get('province').touched || contactForm.get('province').untouched)">
+              {{validation.message}}</span>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+            <label>Quận/Huyện: </label>
+            <select class="form-control" formControlName="district" (change)="getWard()" >
+              <option *ngFor="let district of districtList" value="{{district.districtId}}">{{district.districtName}}</option>
+            </select>
+              <div class="validate" *ngFor="let validation of validationMessages.district">
+              <span *ngIf="contactForm.get('district').hasError(validation.type) && (contactForm.get('district').dirty || contactForm.get('district').touched || contactForm.get('district').untouched)">
+              {{validation.message}}</span>
+              </div>
+          </div>
+            <div class="form-group col-md-3">
+              <label>Phường/Xã: </label>
+              <select class="form-control" formControlName="ward">
+                <option [selected]="contactForm.get('ward').value==ward.wardId" *ngFor="let ward of wardList" value="{{ward.wardId}}">{{ward.wardName}}</option>
+              </select>
+              <div class="validate" *ngFor="let validation of validationMessages.ward">
+              <span *ngIf="contactForm.get('ward').hasError(validation.type) && (contactForm.get('ward').dirty || contactForm.get('ward').touched || contactForm.get('ward').untouched)">
+              {{validation.message}}</span>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputAddress">Số nhà/Đường:</label>
+              <input formControlName="address" type="text" class="form-control" id="inputAddress">
+              <div class="validate" *ngFor="let validation of validationMessages.address">
+              <span *ngIf="contactForm.get('address').hasError(validation.type) && (contactForm.get('address').dirty || contactForm.get('address').touched || contactForm.get('address').untouched)">
+              {{validation.message}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputCity">Lời nhắn: </label>
+              <textarea rows="5"class="form-control" id="inputCity" formControlName="message"></textarea>
+              <div class="validate" *ngFor="let validation of validationMessages.message">
+              <span *ngIf="contactForm.get('message').hasError(validation.type) && (contactForm.get('message').dirty || contactForm.get('message').touched || contactForm.get('message').untouched)">
+              {{validation.message}}</span>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-submit" style="margin-top: 10px; min-width: 100px">Gửi</button>
+        </form>
+      </div>
+      <div class="col-lg4">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.7517909401363!2d108.2075476146634!3d16.078364943464226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421846431fd0fd%3A0x780138ba60fa3aa6!2zMjk1IE5ndXnhu4VuIFThuqV0IFRow6BuaCwgVGhhbmggQsOsbmgsIEjhuqNpIENow6J1LCDEkMOgIE7hurVuZyA1NTAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1652276052256!5m2!1svi!2s" class="img-right"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</div>

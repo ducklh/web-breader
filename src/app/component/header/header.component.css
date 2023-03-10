@@ -1,0 +1,160 @@
+
+
+/*.btn-nav{*/
+/*  background-color: #66c992;*/
+/*}*/
+/*.nav-link:hover{*/
+/*  border-radius: 5px;*/
+/*  background: #66c992;*/
+/*}*/
+
+/*!*css for modal logout*!*/
+
+/*.dropbtn {*/
+/*  background-color: #66c992;*/
+/*  border-radius: 5px;*/
+/*  color: black;*/
+/*  border: none;*/
+/*  min-height: 40px;*/
+/*  margin: 0 5px;*/
+/*}*/
+
+/*.dropbtn:hover, .dropbtn:focus {*/
+/*  border-radius: 5px;*/
+/*  background: #50ad7a;*/
+/*}*/
+
+/*body {*/
+/*  font-family: 'Varela Round', sans-serif;*/
+/*}*/
+
+/*!*.dropbtn {*!*/
+/*!*  background-color: #3498DB;*!*/
+/*!*  color: white;*!*/
+/*!*  padding: 16px;*!*/
+/*!*  font-size: 16px;*!*/
+/*!*  border: none;*!*/
+/*!*  cursor: pointer;*!*/
+/*!*}*!*/
+
+/*!*.dropbtn:hover, .dropbtn:focus {*!*/
+/*!*  background-color: #2980B9;*!*/
+/*!*}*!*/
+
+/*.dropleft {*/
+/*  position: relative;*/
+/*  display: inline-block;*/
+/*}*/
+
+/*.dropdown-content {*/
+/*  display: none;*/
+/*  position: absolute;*/
+/*  background-color: #f1f1f1;*/
+/*  min-width: 160px;*/
+/*  overflow: auto;*/
+/*  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+/*  z-index: 1;*/
+/*}*/
+
+/*.dropdown-content a {*/
+/*  color: black;*/
+/*  padding: 12px 16px;*/
+/*  text-decoration: none;*/
+/*  display: block;*/
+/*}*/
+
+/*.dropleft a:hover {background-color: #66c992;}*/
+
+/*.show {display: block;}*/
+
+.dropdown-item:hover{
+  cursor: pointer;
+}
+.nav-bg{
+  background-color: rgb(255, 255, 255);
+}
+/* .nav-link:hover {
+  border-radius: 5px;
+  background: #66C992;
+} */
+.nav-link{
+  background-image: linear-gradient(
+    to right,
+    #54B3D6,
+    #54B3D6 50%,
+    rgb(0, 0, 0) 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  /* padding: 5px 0; */
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+  font-weight: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 1.5px;
+}
+.nav-link:before {
+  content: '';
+  background: #54B3D6;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+.nav-link:hover {
+  background-position: 0;
+}
+.nav-link:hover::before {
+  width:100%;
+}
+.btn-fun{
+  background-color: #99E2B4;
+}
+.btn-fun:hover{
+  background-color: #78C6A3;
+}
+.navbar-brand{
+  font-weight: bolder;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 1.5px;
+}
+.btn{
+  border-radius: 0;
+}
+.btn-nav {
+  background-color: transparent;
+  letter-spacing: 1.5px;
+}
+.btn-nav:hover {
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+}
+.btn-confirm-logout {
+  background-color: #66C992;
+}
+.btn-confirm-logout:hover {
+  background-color: #2E8C59;
+  color: rgb(255, 255, 255);
+}
+.btn-confirm-logout-cancel:hover {
+  background-color: #0000;
+  color: rgb(255, 255, 255);
+}
+.btn-confirm-logout-cancel {
+  background-color: #0000;
+  color: rgb(255, 255, 255);
+}
+nav{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+.dropbtn{
+  border: none;
+}
+

@@ -1,0 +1,433 @@
+@import url(https://fonts.googleapis.com/css?family=Satisfy); 
+@import url(https://fonts.googleapis.com/css?family=Six+Caps);
+@font-face {
+  font-family: Mukta;
+  src: url('https://fonts.googleapis.com/css?family=Mukta:700');
+}
+
+#btnSearch{}
+.card:hover{
+  background-color: #EDEDED;
+}
+.card{
+  
+}
+.news-hightlight-name, .name-new-left{
+  color: black ;
+}
+.news-hightlight-name, .name-new-left:hover{
+  text-decoration: none;
+}
+.list-news-left:hover{
+  background-color: #EDEDED;
+  
+}
+.btn-outline-search{
+  background-color: #66c992;
+}
+.btn-outline-search:hover{
+  background-color: #F47F24;
+  /* border: 1px solid #192030 */
+}
+.content-news{
+  /* display: block; */
+  margin-top: 90px;
+}
+/* #content{
+  margin-left: 50px;
+  margin-right: 50px
+} */
+.carousel{
+  /* width: 100%;
+height: 50px; */
+}
+/* .img-left{
+  min-height: 500px
+} */
+.contact-div{
+  /* width: 70%; */
+  min-height: 150px;
+  background-color: black;
+  margin: auto;
+  position:relative;
+  display:flex;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  letter-spacing: 1.5px;
+}
+.btn-contact{
+  margin: auto;
+  background-color: white;
+  border-radius: 0;
+  /* font-family: 'Mukta', sans-serif; */
+  font-weight: lighter;
+  letter-spacing: 2px;
+  font-size: 15px;
+}
+.btn-contact:hover{
+  background-color: transparent;
+  border: 1px solid #ffffff; 
+  color: #EDEDED;
+}
+#btn-contact{
+  
+}
+.btn-contact{
+  
+}
+.center-contact{
+/* align-content: center ; */
+}
+.sp-text-mid{
+  color: #F47F24;
+}
+.a-contact{
+  background-image: linear-gradient(
+      to right,
+      #54b3d6,
+      #54b3d6 50%,
+      rgb(255, 255, 255) 50%
+    );
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    /* padding: 5px 0; */
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500px;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    letter-spacing: 1.5px;
+}
+.a-contact:before {
+  content: '';
+  background: #54b3d6;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.a-contact:hover {
+ background-position: 0;
+}
+
+.a-contact:hover::before {
+  width:100%;
+}
+.input-search-2{
+  border-radius: 0;
+}
+.input-search-2::after{
+  
+}
+.btn-outline-search2{
+  background-color: #54b3d6;
+
+  border-radius: 0;
+}
+.btn-outline-search2:hover{
+  background-color: black;
+  color: white;
+}
+.img-thumbnail{
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  min-width: 100%;
+}
+#new-name-left{
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  /* font-family: 'Libre Bodoni', serif;
+font-family: 'News Cycle', sans-serif; */
+}
+#new-name-left:hover{
+  color: #54b3d6;
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+/* .nav-item:hover{
+    background-color: black;
+} */
+.pagination-news{
+    color: black;
+}
+.pagination-news:hover{
+  color: rgb(255, 255, 255);
+  background-color: black;
+}
+/* .name-list-news{
+  padding: 0;
+  margin: 0;
+} */
+.hr-name{
+  background-color: black;
+  width: 100%;
+  height: 10px;
+}
+.nav-link-true{
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background-color: black;
+  color: #EDEDED;
+  pointer-events: none;
+}
+.nav-link-false{
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background-color: transparent;
+  color: black;
+}
+.nav-link-lr-true{
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background-color: transparent;
+  color: black;
+  pointer-events: none;
+}
+.nav-link-lr-false:hover{
+  color: #54b3d6;
+}
+.nav-link-lr-false{
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background-color: transparent;
+  color: black;
+}
+.nav-link-false:hover{
+  background-color: #54b3d6;
+}
+
+
+/* body {
+  background: url(http://api.thumbr.it/whitenoise-361x370.png?background=15424fff&noise=166f9e&density=100&opacity=61);
+  text-align: center;
+} */
+
+/* .halo {
+  background-image: radial-gradient(transparent, rgba(0, 0, 0, 0.6));
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  pointer-events: none;
+} */
+
+.intro {
+  color: rgb(230, 200, 160);
+  display: block;
+  font-family: 'Satisfy', cursive;
+  font-size: 32px;
+  text-shadow: 1px 1px black;
+  transform: rotate(-10deg);
+}
+
+.intro--the {
+  transform: rotate(-10deg) translate(-20px, 15px);
+}
+
+.intro--num {
+  background: rgb(240, 200, 160);
+  border: 1px dotted rgb(20, 60, 80);
+  color: rgb(20, 60, 80);
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bolder;
+  padding: 4px 6px 2px;
+  position: absolute;
+  text-shadow: none;
+  transform: rotate(-10deg) translate(20px, -25px);
+}
+
+.vintage__container {
+  display: inline-block;
+  margin: 25px auto 40px;
+}
+
+.vintage {
+  font-family: 'Six Caps', sans-serif;
+  font-size: 140px;
+  letter-spacing: 10px;
+  line-height: 1;
+  margin: 0;
+  position: relative;
+}
+
+.vintage__top {
+  background: linear-gradient(rgb(240, 220, 200), rgb(230, 200, 160));
+  -webkit-background-clip: text;
+  background-clip: text;
+  position: absolute;
+  z-index: 1;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+.vintage__bot {
+  text-shadow: 
+    2px 1px rgb(85, 10, 0),
+    4px 2px rgb(90, 15, 5),
+    6px 4px rgb(100, 20, 15),
+    8px 5px rgb(105, 25, 20),
+    10px 6px rgb(110, 30, 25),
+    12px 7px rgb(115, 30, 30),
+    14px 8px rgb(120, 30, 35),
+    16px 9px black,
+    18px 10px black,
+    20px 11px black,
+    22px 12px black,
+    24px 13px black,
+    28px 14px rgba(0, 0, 0, 0.9),
+    30px 15px rgba(0, 0, 0, 0.7),
+    32px 16px rgba(0, 0, 0, 0.5),
+    34px 17px rgba(0, 0, 0, 0.3),
+    36px 18px rgba(0, 0, 0, 0.1),
+    40px 20px rgba(0, 0, 0, 0.1);
+}
+
+.outro {
+  color: white;
+  font-family: 'Satisfy', cursive;
+  font-size: 16px;
+}
+
+.outro--big {
+  font-family: sans-serif;
+  font-size: 24px;
+}
+
+.outro--smart {
+  display: block;
+}
+.text {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 18px;     /* fallback */
+   max-height: 72px;      /* fallback */
+   -webkit-line-clamp: 4; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   margin-bottom: 15px;
+   /* font-family: inherit; */
+}
+.name-title-news{
+  background-color: #F47F24;
+  font-weight: bold;
+}
+.name-title-news-marquee{}
+.img-carosel{
+  width: 100%;
+
+  border-radius: 50% 50% 0 0 ;
+}
+
+.img-carosel-2{
+  height:300px;
+  object-fit:cover;
+}
+.name-new-right {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 30px;     /* fallback */
+  max-height: 90px;      /* fallback */
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  /* margin-bottom: 15px; */
+  /* font-family: 'Libre Bodoni', serif; */
+}
+.text-img-left {
+  position: absolute;
+  bottom: 58px;
+  left: 36px;
+  font-family: 'Libre Bodoni', serif;
+  font-size: 50px;
+  color: #ffffff;
+}
+.date-news-1{
+
+}
+.name-news-1{
+font-family: 'Libre Bodoni', serif;
+font-weight: bold;
+}
+.content-news-1, .date-news-1{
+  font-family: 'Heebo', sans-serif;
+}
+.quotes{
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  font-style: italic;
+}
+
+.quotes-1{
+  font-size: 30px;
+}
+#divChart{
+  display: block;
+  width: 400;
+  height: 400;
+}
+
+
+#divWeatherMain{
+  display: block;
+  /* border-radius: 10px; */
+  width: 100%;
+  height: 220px;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
+  color: white;;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.weatherWidgetRow{
+  display:block;
+  margin:0 auto;
+  width: fit-content;
+}
+
+.sun{
+  margin-top: 10px;
+  color: yellow;
+  filter: drop-shadow( 1px 1px 10px yellow);
+}
+
+.moon{
+  margin-top: 10px;
+  color: white;
+  filter: drop-shadow( 1px 1px 10px white);
+}
+
+.cloudDiv{
+  margin-top: -40px;
+}
+
+.cloud{
+  color: rgb(104, 175, 197);
+  filter: drop-shadow( 1px 1px 5px rgb(104, 175, 197));
+  animation-name: cloudMovement;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes cloudMovement{
+  from{margin-left: -55px;}
+  to{margin-left: 65px;}
+}

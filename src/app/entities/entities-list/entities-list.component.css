@@ -1,0 +1,47 @@
+
+#content{
+  min-height: 100vh;
+}
+#button-addon1 {
+  color: #66c992;
+}
+
+.i-footer {
+  color: #66c992;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: rgb(201, 200, 200);
+  font-style: italic;
+}
+
+.form-control.shadow-0:focus {
+  box-shadow: none;
+}
+footer{
+  background-color: rgb(226, 225, 225);
+}
+.btn-nav{
+  background-color: #66c992;
+}
+.nav-link:hover{
+  border-radius: 5px;
+  background: #66c992;
+}
+body{
+  text-align: center;
+}
+element.style {
+  margin-left: 10px;
+}
+
+
+
+.col-6 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+th,td{
+  text-align: center;
+}

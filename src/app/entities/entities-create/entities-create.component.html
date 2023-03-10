@@ -1,0 +1,135 @@
+
+<div class="container-fluid" id="content"style="margin-top: 58px">
+  <div class="row">
+    <div class="col-lg-2 ml-0">
+      <!-- Sidebar -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height: 1000px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4"><strong>Quản lý hệ thống</strong></span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a [routerLink]="['/admin/employee']" class="nav-link " aria-current="page">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+              Quản lý nhân viên
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/employee/entities']"class="nav-link active">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              Quản lý cá thể
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+
+        <!-- Sidebar -->
+      </div>
+    </div>
+    <div class="col-lg-10 " style="padding-left: 30px;padding-top: 20px">
+      <strong style="font-size: 18px; height: 20px; padding-left: 20px">Khởi tạo thông tin vật nuôi</strong>
+      <hr/>
+      <form style="max-width: 100%; text-align: center;justify-items: center;align-items: center; margin-left: 2em" [formGroup]="entitiesForm" *ngIf="entitiesForm" (loadeddata)="getEntitiesId()" (ngSubmit)="createEntities()" class="bg-form">
+        <div class="container-fluid">
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3"  style="width: 130px; margin-top: 3em">Mã chuồng nuôi<span class="text-danger">*</span></label>
+            <div class="col-sm-8" style="margin-top: 3em">
+              <select class="span2 form-control" formControlName="cageId" (change)="getEntitiesId()">
+                <option class="span2 form-control" size="16" value="">-Vui lòng chọn mã chuồng nuôi-</option>
+                <option class="span2 form-control" size="16" *ngFor="let cage of cageList">{{cage}}</option>
+              </select>
+              <div *ngFor="let validation of validationMessages.cageId">
+              <span style="color: red;text-align: left", *ngIf="entitiesForm.get('cageId').hasError(validation.type) && (entitiesForm.get('cageId').dirty || entitiesForm.get('cageId').touched || entitiesForm.get('cageId').untouched)">
+              {{validation.message}}</span>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Mã vật nuôi<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-append date" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                <input class="span2 form-control" size="16" type="text" formControlName="entitiesId" disabled (change)="destroyHacker()">
+                <div style="color: red; text-align: left"  *ngFor="let validation of validationMessages.entitiesId">
+              <span *ngIf="entitiesForm.get('entitiesId').hasError(validation.type) && (entitiesForm.get('entitiesId').dirty || entitiesForm.get('entitiesId').touched)">
+              {{validation.message}}</span>
+                  <span *ngIf="wasEdit==true">Trường này không cho chỉnh sửa!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Ngày vào chuồng<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-append date" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                <input class="span2 form-control" size="16" type="date" value="12/02/2012" formControlName="inDate">
+                <div style="color: red; text-align: left"  *ngFor="let validation of validationMessages.inDate">
+              <span *ngIf="entitiesForm.get('inDate').hasError(validation.type) && (entitiesForm.get('inDate').dirty || entitiesForm.get('inDate').touched||entitiesForm.get('inDate').untouched)">
+              {{validation.message}}</span>
+                  <span *ngIf="entitiesForm.get('inDate').hasError('flag')">Ngày vào chuồng không được lớn hơn ngày hiện tại</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Ngày ra chuồng<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                <input class="span2 form-control" size="16" type="date" value="12/02/2012"formControlName="outDate"  (change)="compare()">
+                <div style="color: red; text-align: left"  *ngFor="let validation of validationMessages.outDate">
+              <span *ngIf="entitiesForm.get('outDate').hasError(validation.type) && (entitiesForm.get('outDate').dirty || entitiesForm.get('outDate').touched || entitiesForm.get('outDate').untouched)">
+              {{validation.message}}</span>
+                  <span *ngIf="entitiesForm.get('outDate').hasError('flag')">Ngày ra chuồng quá lớn</span>
+                  <span *ngIf="more==true">Ngày ra phải lớn hơn ngày vào chuồng</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Cân nặng<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-group mb-3">
+
+                <input  class="span2 form-control" size="16" min="1" type="number" value="1" formControlName="weight" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">kg</span>
+                </div>
+              </div>
+              <div style="color: red;text-align: left"  *ngFor="let validation of validationMessages.weight">
+              <span *ngIf="entitiesForm.get('weight').hasError(validation.type) && (entitiesForm.get('weight').dirty || entitiesForm.get('weight').touched ||entitiesForm.get('weight').untouched)">
+              {{validation.message}}</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Trạng thái<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-group mb-3">
+                <input class="span2 form-control" min="1" type="text" value="" formControlName="status">
+              </div>
+              <div style="color: red;text-align: left"  *ngFor="let validation of validationMessages.status">
+              <span *ngIf="entitiesForm.get('status').hasError(validation.type) && (entitiesForm.get('status').dirty || entitiesForm.get('status').touched ||entitiesForm.get('status').untouched)">
+              {{validation.message}}</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info m-2">Tạo mới</button>
+        <button type="button" class="btn btn-success m-2" [routerLink]="['/employee/entities/']">Huỷ bỏ</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!--</body>-->
+<!--</html>-->

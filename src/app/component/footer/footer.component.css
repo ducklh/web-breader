@@ -1,0 +1,15 @@
+.i-footer {
+  color: #66C992;
+}
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: rgb(201, 200, 200);
+  font-style: italic;
+}
+footer {
+  background-color: rgb(226, 225, 225);
+}
+
+#button-addon1 {
+  color: #66C992;
+}

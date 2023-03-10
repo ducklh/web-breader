@@ -1,0 +1,69 @@
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">BREEDER </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto ml-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link text-uppercase" href="">Trang chủ <span
+            class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-uppercase" href="#">Tin tức</a>
+        </li>
+        <li
+          class="nav-item active">
+          <a class="nav-link text-uppercase" href="#">Về chúng tôi</a>
+        </li>
+        <li
+          class
+            ="nav-item active">
+          <a class="nav-link text-uppercase" href="#">Liên Hệ</a>
+        </li>
+      </ul>
+      <div
+        *ngIf="isLoggedIn then  loggedIn else notLogIn"></div>
+      <ng-template #notLogIn>
+        <div class="dropleft">
+          <button type="button" class="dropbtn nav-link " [routerLink]="['/login']">
+            Đăng nhập <i class="fa-solid fa-circle-user"></i>
+          </button>
+        </div>
+      </ng-template>
+      <ng-template #loggedIn>
+        <div class="dropleft">
+          <button onclick="myFunction()" class="dropbtn nav-link">
+            {{username}} <i class="fa-solid fa-circle-user"></i>
+          </button>
+          <div id="myDropdown" class="dropdown-content dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['/admin/employee']"> <i class="fa-solid fa-gears"></i> Quản lý nhân viên </a>
+            <a
+              class
+                ="dropdown-item" [routerLink]="['/employee/entities']"> <i class="fa-solid fa-circle-info"></i> Quản lý cá thể</a>
+            <a
+              class
+                ="dropdown-item" href="#"> <i class="fa-solid fa-carrot"></i> Quản lý thức ăn</a>
+            <a
+              class
+                ="dropdown-item"
+              href="#"> <i class="fa-solid fa-book-medical"></i> Quản lý bệnh lý</a>
+            <a
+              class
+                ="dropdown-item" [routerLink]="['/employee/cage']">
+              <i class="fa-solid fa-truck-moving"></i> Quản lý chuồng nuôi</a>
+            <a
+              class
+                ="dropdown-item"
+              type
+                ="button" (click)="openDialog()"> <i class="fa-solid fa-right-from-bracket"></i>
+              Đăng xuất</a>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nav>

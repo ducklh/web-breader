@@ -1,0 +1,298 @@
+
+.body {
+
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  url(https://images.unsplash.com/photo-1551651437-f293403584ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80);
+
+  height: 100%;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+}
+
+
+.container__modal {
+  justify-content: center;
+  align-items: center;
+  /*background-color: #ccc;*/
+  position: relative;
+}
+
+.card {
+  height: 510px;
+  width: 800px;
+  background-color: #fff;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2),
+  0 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+
+.card .user {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+}
+
+.image-box {
+  width: 50%;
+  height: 100%;
+  overflow: hidden
+}
+
+.image-box img {
+  box-sizing: border-box;
+  object-fit: cover;
+  width: 100%;
+  height: 100%
+}
+
+.user .form {
+  width: 50%
+}
+
+.card .signup_form .form {
+  position: absolute;
+  background-color: #fff;
+  padding: 20px 30px;
+  left: 0;
+  box-sizing: border-box;
+  transition: all 1s;
+  z-index: 1;
+  height: 100%
+}
+
+
+.text_signin {
+  margin-top: 25px;
+  text-align: center;
+}
+
+
+.text_signin h2 {
+  color: #66c992;
+  padding-top: 40px
+}
+
+
+.input-text-signin {
+  position: relative;
+  margin-top: 30px
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: 0;
+  border: 1px solid #cccadc;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 20px;
+  box-sizing: border-box
+}
+
+input[type="password"] {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: 0;
+  border: 1px solid #cccadc;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 24px;
+  box-sizing: border-box
+}
+
+.input-text-signin i {
+  position: absolute;
+  top: 15px;
+  right: 8px;
+  color: #6b6589;
+  cursor: pointer;
+  font-size: 13px
+}
+
+.fa-eye {
+  position: absolute;
+  top: 12px;
+  right: 8px
+}
+
+.input-text-signin label {
+  position: absolute;
+  left: 5px;
+  top: 12px;
+  font-size: 13px;
+  transition: all 0.5s;
+  pointer-events: none
+}
+
+.input-text-signin input:focus ~ label,
+.input-text-signin input:valid ~ label {
+  top: -17px;
+  font-weight: 700;
+  color: #66c992
+}
+
+.signin-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+}
+
+.signin-button button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: 0;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #66c992;
+  cursor: pointer;
+  transition: all 0.5s
+}
+
+.signin-button button:hover {
+  background-color: #41B675
+}
+
+.below-contain{
+  margin-top: 30px;
+  display: flex;
+}
+
+.check-remember{
+
+  margin-right: 25%;
+  vertical-align: bottom!important;
+}
+
+input[type="checkbox"] {
+  height: 1.0em;
+  width: 1.0em;
+  margin-right: 3px;
+}
+
+.checkbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+
+
+.link a {
+  color: blue;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.copyright-text{
+  text-align: center;
+  font-size: small;
+  color: #449e6c;
+  margin-top: 26%;
+}
+
+.warning {
+  border: 1px solid red !important
+}
+
+.signin_form .form {
+  background-color: #fff;
+  padding: 20px 30px;
+  left: 0;
+  box-sizing: border-box;
+  transition: all 1s
+}
+
+
+@media (max-width: 720px) {
+
+  .container__modal {
+    height: auto;
+  }
+
+  .card {
+    width: auto;
+  }
+
+  .image-box {
+    display: none
+  }
+
+  .user .form {
+    width: 100%;
+    height: auto;
+  }
+
+  .below-contain{
+    margin-top: 30px;
+    display: flex;
+    position: relative;
+  }
+
+  .link {
+    position: absolute;
+    right: 0;
+  }
+
+  .copyright-text{
+    margin-top: 20%;
+  }
+
+}
+
+@media (min-width: 735px) {
+
+  .container__modal {
+    height: auto;
+  }
+
+  .card {
+    width: auto;
+  }
+
+  .card .user {
+
+  }
+
+  .card .image-box {
+    width: 50%;
+    height: 100%;
+    overflow: hidden
+  }
+
+  .image-box img {
+    box-sizing: border-box;
+    object-fit: cover;
+    width: 100%;
+    height: 100%
+  }
+
+  .user .form {
+    width: 50%;
+    height: auto;
+  }
+
+}
+
+@media (max-width: 1500px){
+  .copyright-text{
+    margin-top: 16%;
+  }
+}
+
+
+

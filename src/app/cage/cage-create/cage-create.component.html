@@ -1,0 +1,155 @@
+<div class="container-fluid" id="content" style="margin-top: 60px">
+  <div class="row">
+    <div class="col-lg-3 ml-0">
+      <!-- Sidebar -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 235px; height: 1000px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4"><strong>Quản lý hệ thống</strong></span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a [routerLink]="['/admin/employee']" class="nav-link " aria-current="page">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+              Quản lý nhân viên
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/employee/entities']" class="nav-link">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              Quản lý cá thể
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/employee/cage']" class="nav-link active">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              Quản lý chuồng nuôi
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+
+        <!-- Sidebar -->
+      </div>
+    </div>
+    <div class="col-lg-9 ">
+
+      <strong style="font-size: larger;margin-top: 10px; height: 20px">Khởi tạo chuồng nuôi</strong>
+
+      <hr/>
+      <form style="max-width: 100%;"  class="bg-light" [formGroup]="formGroup" *ngIf="formGroup" (ngSubmit)="onSubmit()">
+        <div class="container-fluid">
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3"  style="width: 130px;">Mã chuồng nuôi<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-group mb-3">
+                <input class="form-control" formControlName="cageId" type="text" disabled (change)="preventEdit()" >
+              </div>
+              <div style="color: red" *ngIf="formGroup.controls.cageId.hasError('required') && formGroup.get('cageId').touched">
+                  Vui lòng nhập mã chuồng nuôi.
+              </div>
+              <span style="color: red" *ngIf="wasEdit==true">Trường này không cho phép chỉnh sửa!</span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Mã nhân viên<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-group mb-3">
+                <input class="form-control" formControlName="employeeId" type="text" disabled (change)="preventEdit()">
+              </div>
+
+              <div >
+                <div style="color: red" *ngIf="formGroup.controls.employeeId.hasError('required') && formGroup.get('employeeId').touched">
+                  Vui lòng nhập mã nhân viên.
+                </div>
+                <span style="color: red" *ngIf="wasEdit==true">Trường này không cho phép chỉnh sửa!</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Ngày tạo chuồng<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-append date" data-date-format="dd-mm-yyyy">
+                <input class="span2 form-control" size="16" formControlName="createdDate" type="date">
+              </div>
+
+              <div >
+                <div style="color: red" *ngIf="formGroup.controls.createdDate.hasError('required') && formGroup.get('createdDate').touched">
+                  Vui lòng nhập ngày tạo chuồng.
+                </div>
+
+                <div style="color: red" *ngIf="formGroup.controls.createdDate.hasError('flag') && formGroup.get('createdDate').touched">
+                  Ngày tạo chuồng không được nhỏ hơn ngày hiện tại.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Ngày đóng chuồng<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-append date" id="dp3" data-date-format="dd-mm-yyyy">
+                <input class="span2 form-control" size="16" formControlName="closedDate" type="date">
+              </div>
+
+              <div >
+                <div style="color: red" *ngIf="formGroup.controls.closedDate.hasError('required') && formGroup.get('closedDate').touched">
+                  Vui lòng nhập ngày đóng chuồng.
+                </div>
+
+                <div style="color: red" *ngIf="formGroup.hasError('flag') && formGroup.touched ">
+                  Ngày đóng chuồng không được nhỏ hơn ngày tạo chuồng.
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label  class="col-form-label ml-3" style="width: 130px;">Số lượng cá thể<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              <div class="input-group mb-3">
+                <input  class="form-control" type="number" formControlName="quantity">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">cá thể</span>
+                </div>
+              </div>
+              <div >
+                <div style="color: red" *ngIf="formGroup.controls.quantity.hasError('required') && formGroup.get('quantity').touched">
+                  Vui lòng nhập số lượng cá thể.
+                </div>
+                <div style="color: red" *ngIf="formGroup.controls.quantity.hasError('min') && formGroup.get('quantity').touched">
+                  Số lượng cá thể phải lớn hơn 1.
+                </div>
+                <div style="color: red" *ngIf="formGroup.controls.quantity.hasError('max') && formGroup.get('quantity').touched">
+                  Số lượng cá thể phải nhỏ hơn 50.
+                </div>
+                <div style="color: red" *ngIf="formGroup.controls.quantity.hasError('pattern') && formGroup.get('quantity').touched">
+                  Vui lòng không nhập các kí tự đặc biệt.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-info m-2">Tạo mới</button>
+            <button type="button" class="btn btn-success m-2" [routerLink]="['/employee/cage']" >Huỷ bỏ</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

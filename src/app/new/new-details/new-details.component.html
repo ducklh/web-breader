@@ -1,0 +1,37 @@
+<div class="mt-1" *ngIf = "news">
+    <div >
+        <img  class="d-block w-100s img-news-detail" src="{{news.image}}">
+      </div>
+      <H2 class="name-news-1 mt-3">{{news.type}}</H2>
+      <p class="content-news-1">{{news.newsName}}</p>
+      <p class="content-news-1">{{news.content}}</p>
+      <p class="card-text"> {{news.createdDate| date: 'dd/MM/yyyy' }}
+        <span style="text-align: right;">{{news.employee.employeeName}} | </span>
+        <span style="text-align: right;"> Lượt xem: {{news.totalView}}</span>
+      </p>
+      <!-- <p class="content-news-1">Total Views: {{news.totalView}}</p> -->
+      <button class="btn btn-outline-search2" (click)="backListViews()">Quay lại</button>
+      <div class=" mt-5" >
+        <p *ngIf="sizeComment>0" class="text-bold"> {{sizeComment}} bình luận</p>
+        <div class="row mb-5" *ngIf="isLoggedIn">
+          <div class="col-2 "> <img class="img-user-login" src="{{childMessage.avatar}}" style="" alt=""></div>
+          <div class="col-10">
+            <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="form-inline my-lg-0 form-group">
+              <input class="form-control col-10 input-comment" name="content" type="search"
+                placeholder="Thêm bình luận mới" aria-label="Search" formControlName="content"
+                aria-describedby="validationTooltipUsernamePrepend">
+              <button class="btn btn-outline-search2 my-2 my-sm-0 col-2" id='btnSearch' type="submit">Gửi</button>
+            </form>
+          </div>
+
+        </div>
+        <div class="row mt-4" *ngFor="let cmt of comment">
+          <div class="col-2"> <img class="img-user-login" src="{{cmt.avatar}}" style="" alt=""></div>
+          <div class="col-10">
+            <div class="font-weight-bold" style="">{{cmt.employeeName}}</div>
+            <div>{{cmt.content}}</div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>

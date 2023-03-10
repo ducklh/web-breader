@@ -1,0 +1,139 @@
+
+
+<div class="container-fluid" id="content" style="margin-top: 58px">
+  <div class="row">
+    <div class="col-lg-2 ml-0">
+      <!-- Sidebar -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 235px; height: 1000px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4"><strong>Quản lý hệ thống</strong></span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a [routerLink]="['/admin/employee']" class="nav-link" aria-current="page">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+              Quản lý nhân viên
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/employee/entities']"class="nav-link active">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              Quản lý cá thể
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+
+        <!-- Sidebar -->
+      </div>
+    </div>
+    <div class="col-lg-10">
+      <div class="card shadow ">
+        <div class="card-header py-3">
+          <div class="d-flex flex-row  d-flex justify-content-center">
+            <div class="col-6">
+              <div class="input-group" style="padding-left: 120px">
+                <p style="    margin-top: 5px;">Khoảng ngày vào chuồng từ  </p>
+                <div class="form-outline" style="    margin-left: 10px;    margin-right: 10px;">
+                  <input type="date" class="form-control" [(ngModel)]="inDateMin"
+                         placeholder="Nhập ngày vào" />
+                </div>
+                <p style="    margin-top: 5px;">đến</p>
+                <div class="form-outline" style=" margin-left: 10px;">
+                  <input type="date" class="form-control" [(ngModel)]="inDateMax"
+                         placeholder="Nhập ngày vào" />
+                </div>
+                <div class="form-outline"style="margin-left: 10px;" >
+                  <input type="search" class="form-control" [(ngModel)]="cage"
+                         placeholder="Nhập mã chuồng nuôi"/>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="search()" style="margin-left: 10px;">
+                  Tìm kiếm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="isTrue">
+          <div *ngIf="isSubmitted then submited else notSubmited"></div>
+          <ng-template #notSubmited>
+            <h5>Không có kết quả nào để hiển thị</h5>
+          </ng-template>
+          <ng-template #submited>
+            <h5></h5>
+          </ng-template>
+        </div>
+        <div class="card-body" *ngIf="isTrue2">
+
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+              <tr>
+                <th>Mã lợn</th>
+                <th>Mã chuồng nuôi</th>
+                <th>Ngày nhập chuồng</th>
+                <th>Ngày xuất chuồng</th>
+                <th>Tình trạng</th>
+                <th>Cân nặng(kg)</th>
+                <th>Sửa</th>
+                <th>Xoá</th>
+
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let entity of entities2">
+                <td>{{entity.entitiesId}}</td>
+                <td>{{entity.cageId}}</td>
+                <td>{{entity.inDate |date:"dd-MM-yyyy"}}</td>
+                <td>{{entity.outDate |date:"dd-MM-yyyy"}}</td>
+                <td>{{entity.status}}</td>
+                <td>{{entity.weight}}</td>
+
+                <td>
+
+                  <button class="btn" [routerLink]="['update/'+entity.entitiesId]"><i class="fa-solid fa-pen-clip"
+                                                                          style="color: blue;"></i></button>
+                </td>
+                <td>
+                  <button class="btn" (click)="openDialog(entity.entitiesId)"><i class="fa-solid fa-trash-can"
+                                                                                      style="color: red;"></i></button>
+                </td>
+
+              </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-5">
+
+              <a routerLink="/employee/entities/create">
+                <button class="btn btn-primary">Khởi tạo</button>
+              </a>
+            </div>
+            <div class="col-sm-12 col-md-7">
+              <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+
+                <ul class="nav nav-pills">
+                  <li class="nav-item" *ngFor="let p of pages;let i=index">
+                    <a class="nav-link " href="" (click)="setPage(i,$event)">{{i + 1}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
